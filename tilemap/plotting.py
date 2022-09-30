@@ -177,6 +177,8 @@ def plot_geodata(
     resampling=Resampling.bilinear,
     cache_folder=None,
     fn=None,
+    tile_alpha=None,
+    axis_off=True,
     extra_imshow_args={},
     *args,
     **extra_plot_args
@@ -264,11 +266,16 @@ def plot_geodata(
     fig, ax = plt.subplots(1, 1, figsize=figsize)
     
     gdf.plot(ax=ax, *args, **extra_plot_args)
+    if tile_alpha is not None:
+        extra_imshow_args['alpha'] = tile_alpha
     add_basemap(ax, zoom, provider, interpolation, attribution, attribution_size, reset_extent, crs, resampling, cache_folder, **extra_imshow_args)
     
     # 去除科学记数法
     ax.get_xaxis().get_major_formatter().set_useOffset(False)
     ax.get_yaxis().get_major_formatter().set_useOffset(False)
+    
+    if axis_off:
+        ax.axis('off')
     
     if fn is not None:
         fig.savefig(fn, dpi=300, bbox_inches='tight', pad_inches=0.1)

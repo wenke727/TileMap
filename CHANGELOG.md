@@ -7,12 +7,19 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
-- Crawls by Place
+- 设置 cache_folder
+- Crawls by Place（需要 Amap searching API 加持）
 - 多进程爬虫提升速度
 - 支持百度坐标系转换到其他 crs
 - 瓦片进度条可视化
 - 修复 Google 瓦片服务
 
+## [V1.1.1] - 2022-09-30
+
+- 将 `tile.py` 中关于引用 `baidutile` 嵌入到具体的代码
+  使得整体模块在非使用 `百度` 服务商时，在 windows 64 位上依旧可以运行
+- plot_geodata
+  增加常用参数`tile_alpha`, `axis_off`的默认值
 
 ## [V1.1] - 2022-09-08
 

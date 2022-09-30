@@ -16,7 +16,6 @@ from contextily.tile import _sm2ll, _validate_zoom, _merge_tiles
 
 from .misc import get_proxy, http_retryer
 from .parallel import parallel_process
-from .coordtransform import baidutile
 from ._providers import providers as PROVIDERS
 from .coordtransform import wgs84_to_gcj02, gcj02_to_wgs84
 from .coordtransform import wgs84_to_bd09, bd09_to_wgs84
@@ -330,6 +329,7 @@ class TileMap():
                 self.from_wgs = wgs84_to_gcj02
         elif self.tile_coord_sys in ['bd']:
             # 百度瓦片的编号和常规编号不一致
+            from .coordtransform import baidutile
             self.iter_tiles  = baidutile.tiles_bd
             self.ll_2_tile   = baidutile.tile
             self.tile_bounds = baidutile.bounds_bd
